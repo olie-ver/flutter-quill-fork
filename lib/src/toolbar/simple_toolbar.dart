@@ -73,7 +73,23 @@ class QuillSimpleToolbar extends StatelessWidget implements PreferredSizeWidget 
             controller: controller,
             baseOptions: config.buttonOptions.base,
           ),
-        ]
+        ],
+        [
+          if (config.showHeaderStyle) ...[
+            if (config.headerStyleType.isOriginal)
+              QuillToolbarSelectHeaderStyleDropdownButton(
+                controller: controller,
+                options: config.buttonOptions.selectHeaderStyleDropdownButton,
+                baseOptions: config.buttonOptions.base,
+              )
+            else
+              QuillToolbarSelectHeaderStyleButtons(
+                controller: controller,
+                options: config.buttonOptions.selectHeaderStyleButtons,
+                baseOptions: config.buttonOptions.base,
+              ),
+          ],
+        ],
       ];
 
       // final groups = [
