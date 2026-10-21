@@ -6,6 +6,8 @@ import '../../l10n/extensions/localizations_ext.dart';
 import '../base_button/base_value_button.dart';
 import '../simple_toolbar.dart';
 
+// TODO: make display the default font family 
+
 class QuillToolbarFontFamilyButton
     extends
         QuillToolbarBaseButton<
@@ -24,8 +26,7 @@ class QuillToolbarFontFamilyButton
        assert(options.initialValue == null || options.initialValue!.isNotEmpty);
 
   @override
-  QuillToolbarFontFamilyButtonState createState() =>
-      QuillToolbarFontFamilyButtonState();
+  QuillToolbarFontFamilyButtonState createState() => QuillToolbarFontFamilyButtonState();
 }
 
 class QuillToolbarFontFamilyButtonState
@@ -36,14 +37,11 @@ class QuillToolbarFontFamilyButtonState
           QuillToolbarFontFamilyButtonExtraOptions,
           String
         > {
+          
   @override
   String get currentStateValue {
-    final attribute = controller
-        .getSelectionStyle()
-        .attributes[options.attribute.key];
-    return attribute == null
-        ? _defaultDisplayText
-        : (_getKeyName(attribute.value) ?? _defaultDisplayText);
+    final attribute = controller.getSelectionStyle().attributes[options.attribute.key];
+    return attribute == null ? _defaultDisplayText : (_getKeyName(attribute.value) ?? _defaultDisplayText);
   }
 
   String get _defaultDisplayText {
