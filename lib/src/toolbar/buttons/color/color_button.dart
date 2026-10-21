@@ -124,7 +124,7 @@ class QuillToolbarColorButtonState extends QuillToolbarColorBaseButtonState {
 
   @override
   IconData get defaultIconData =>
-      widget.isBackground ? Icons.format_color_fill : Icons.color_lens;
+      widget.isBackground ? Icons.format_color_fill : Icons.format_color_text;
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +178,7 @@ class QuillToolbarColorButtonState extends QuillToolbarColorBaseButtonState {
     );
   }
 
-  void _changeColor(BuildContext context, Color? color) {
+  void _changeColor(BuildContext context, Color? color) { //Want this function to close the dialog automatically
     if (color == null) {
       widget.controller.formatSelection(
         widget.isBackground

@@ -97,65 +97,109 @@ class QuillSimpleToolbar extends StatelessWidget implements PreferredSizeWidget 
             controller: controller,
             baseOptions: config.buttonOptions.base,
           ),
-        ]
+        ],
+        [
+          if (config.showFontSize)
+          QuillToolbarFontSizeButton(
+            options: config.buttonOptions.fontSize,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+        ],
+        [
+          if (config.showBoldButton)
+          QuillToolbarToggleStyleButton(
+            attribute: Attribute.bold,
+            options: config.buttonOptions.bold,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+          if (config.showItalicButton)
+          QuillToolbarToggleStyleButton(
+            attribute: Attribute.italic,
+            options: config.buttonOptions.italic,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+          if (config.showUnderLineButton)
+          QuillToolbarToggleStyleButton(
+            attribute: Attribute.underline,
+            options: config.buttonOptions.underLine,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+          if (config.showStrikeThrough)
+          QuillToolbarToggleStyleButton(
+            attribute: Attribute.strikeThrough,
+            options: config.buttonOptions.strikeThrough,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+          if (config.showColorButton)
+          QuillToolbarColorButton(
+            controller: controller,
+            isBackground: false,
+            options: config.buttonOptions.color,
+            baseOptions: config.buttonOptions.base,
+          ),
+          if (config.showBackgroundColorButton)
+          QuillToolbarColorButton(
+            options: config.buttonOptions.backgroundColor,
+            controller: controller,
+            isBackground: true,
+            baseOptions: config.buttonOptions.base,
+          ),
+        ],
+        [
+          QuillToolbarSelectAlignmentButtons(
+            controller: controller,
+            options: config.buttonOptions.selectAlignmentButtons.copyWith(
+              showLeftAlignment: config.showLeftAlignment,
+              showCenterAlignment: config.showCenterAlignment,
+              showRightAlignment: config.showRightAlignment,
+              showJustifyAlignment: config.showJustifyAlignment,
+            ),
+            baseOptions: config.buttonOptions.base,
+          ),
+          QuillToolbarSelectLineHeightStyleDropdownButton(
+            controller: controller,
+            options: config.buttonOptions.selectLineHeightStyleDropdownButton,
+            baseOptions: config.buttonOptions.base,
+          ),
+        ],
+        [
+          if (config.showListNumbers)
+          QuillToolbarToggleStyleButton(
+            attribute: Attribute.ol,
+            options: config.buttonOptions.listNumbers,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+          if (config.showListBullets)
+          QuillToolbarToggleStyleButton(
+            attribute: Attribute.ul,
+            options: config.buttonOptions.listBullets,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+          if (config.showListCheck)
+          QuillToolbarToggleCheckListButton(
+            options: config.buttonOptions.toggleCheckList,
+            controller: controller,
+            baseOptions: config.buttonOptions.base,
+          ),
+          // if (config.showCodeBlock)
+          //   QuillToolbarToggleStyleButton(
+          //     attribute: Attribute.codeBlock,
+          //     options: config.buttonOptions.codeBlock,
+          //     controller: controller,
+          //     baseOptions: config.buttonOptions.base,
+          //   ),
+        ],
       ];
 
       // final groups = [
       //   [
-      //     if (config.showUndo)
-      //       QuillToolbarHistoryButton(
-      //         isUndo: true,
-      //         options: config.buttonOptions.undoHistory,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showRedo)
-      //       QuillToolbarHistoryButton(
-      //         isUndo: false,
-      //         options: config.buttonOptions.redoHistory,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showFontFamily)
-      //       QuillToolbarFontFamilyButton(
-      //         options: config.buttonOptions.fontFamily,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showFontSize)
-      //       QuillToolbarFontSizeButton(
-      //         options: config.buttonOptions.fontSize,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showBoldButton)
-      //       QuillToolbarToggleStyleButton(
-      //         attribute: Attribute.bold,
-      //         options: config.buttonOptions.bold,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showItalicButton)
-      //       QuillToolbarToggleStyleButton(
-      //         attribute: Attribute.italic,
-      //         options: config.buttonOptions.italic,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showUnderLineButton)
-      //       QuillToolbarToggleStyleButton(
-      //         attribute: Attribute.underline,
-      //         options: config.buttonOptions.underLine,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showStrikeThrough)
-      //       QuillToolbarToggleStyleButton(
-      //         attribute: Attribute.strikeThrough,
-      //         options: config.buttonOptions.strikeThrough,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
       //     if (config.showInlineCode)
       //       QuillToolbarToggleStyleButton(
       //         attribute: Attribute.inlineCode,
@@ -184,20 +228,6 @@ class QuillSimpleToolbar extends StatelessWidget implements PreferredSizeWidget 
       //         controller: controller,
       //         baseOptions: config.buttonOptions.base,
       //       ),
-      //     if (config.showColorButton)
-      //       QuillToolbarColorButton(
-      //         controller: controller,
-      //         isBackground: false,
-      //         options: config.buttonOptions.color,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showBackgroundColorButton)
-      //       QuillToolbarColorButton(
-      //         options: config.buttonOptions.backgroundColor,
-      //         controller: controller,
-      //         isBackground: true,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
       //     if (config.showClearFormat)
       //       QuillToolbarClearFormatButton(
       //         controller: controller,
@@ -218,17 +248,6 @@ class QuillSimpleToolbar extends StatelessWidget implements PreferredSizeWidget 
       //         ),
       //   ],
       //   [
-      //     if (config.showAlignmentButtons)
-      //       QuillToolbarSelectAlignmentButtons(
-      //         controller: controller,
-      //         options: config.buttonOptions.selectAlignmentButtons.copyWith(
-      //           showLeftAlignment: config.showLeftAlignment,
-      //           showCenterAlignment: config.showCenterAlignment,
-      //           showRightAlignment: config.showRightAlignment,
-      //           showJustifyAlignment: config.showJustifyAlignment,
-      //         ),
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
       //     if (config.showDirection)
       //       QuillToolbarToggleStyleButton(
       //         attribute: Attribute.rtl,
@@ -238,48 +257,6 @@ class QuillSimpleToolbar extends StatelessWidget implements PreferredSizeWidget 
       //       ),
       //   ],
       //   [
-      //     if (config.showLineHeightButton)
-      //       QuillToolbarSelectLineHeightStyleDropdownButton(
-      //         controller: controller,
-      //         options: config.buttonOptions.selectLineHeightStyleDropdownButton,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showHeaderStyle) ...[
-      //       if (config.headerStyleType.isOriginal)
-      //         QuillToolbarSelectHeaderStyleDropdownButton(
-      //           controller: controller,
-      //           options: config.buttonOptions.selectHeaderStyleDropdownButton,
-      //           baseOptions: config.buttonOptions.base,
-      //         )
-      //       else
-      //         QuillToolbarSelectHeaderStyleButtons(
-      //           controller: controller,
-      //           options: config.buttonOptions.selectHeaderStyleButtons,
-      //           baseOptions: config.buttonOptions.base,
-      //         ),
-      //     ],
-      //   ],
-      //   [
-      //     if (config.showListNumbers)
-      //       QuillToolbarToggleStyleButton(
-      //         attribute: Attribute.ol,
-      //         options: config.buttonOptions.listNumbers,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showListBullets)
-      //       QuillToolbarToggleStyleButton(
-      //         attribute: Attribute.ul,
-      //         options: config.buttonOptions.listBullets,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
-      //     if (config.showListCheck)
-      //       QuillToolbarToggleCheckListButton(
-      //         options: config.buttonOptions.toggleCheckList,
-      //         controller: controller,
-      //         baseOptions: config.buttonOptions.base,
-      //       ),
       //     if (config.showCodeBlock)
       //       QuillToolbarToggleStyleButton(
       //         attribute: Attribute.codeBlock,
